@@ -1,0 +1,31 @@
+---
+- hosts: all
+  tasks:
+    # Policy 1
+    - name: Ensure the guest account name is Guest Account
+      file:
+        path: /opt/NewGuestName
+        state: directory
+      become: true
+      when: policy_1_exception is not defined
+    # Policy 2
+    - name: Ensure the maximum password age is set to 15
+      file:
+        path: /opt/MaximumPasswordAge
+        state: directory
+      become: true
+      when: policy_2_exception is not defined
+    # Policy 3
+    - name: Ensure passwords are not stored using reversible encryption
+      file:
+        path: /opt/ClearTextPassword
+        state: directory
+      become: true
+      when: policy_3_exception is not defined
+    # Policy 4
+    - name: Ensure system events is enabled
+      file:
+        path: /opt/AuditSystemEvents
+        state: directory
+      become: true
+      when: policy_4_exception is not defined

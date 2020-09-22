@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  vars:
+    job_id: "{{ lookup('env', 'JOB_ID') }}"
+  tasks:
+    - name: Get the previous job in the current workflow
+      tower_previous_workflow_job:
+        tower_base_url: "{{ tower_base_url }}"
+        tower_username: "{{ tower_username }}"
+        tower_password: "{{ tower_password }}"
+        tower_job_id: "{{ job_id }}"
+      register: previous_job
+    - name: Beautify output
+      beautify_ansible_job_output:
+        tower_base_url: "{{ tower_base_url }}"
+        tower_username: "{{ tower_username }}"
+        tower_password: "{{ tower_password }}"
+        tower_job_id: "{{ previous_job.job_id }}"
+      register: job 
+    - name: Create SNow incidents
+      servicenow.servicenow.snow_record:
+        state: present
+        data:
+          short_description: "The machine {{ item.key }} has the following problems: {{ item.value | list }}"
+          severity: 3
+          priority: 2
+      with_dict: job.value
