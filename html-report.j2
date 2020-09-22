@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<h1>Systems not compliant</h1>
+
+{% for k, values in job.value.items() %}
+    <h2>{{ k }}</h2>
+    <ul>
+    {% for item in values %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+</html>
