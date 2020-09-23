@@ -8,7 +8,7 @@ fields:
   - name
   - os
   - attributes
-  - iis_https_exception
+  - u_iis_https_exception
 keyed_groups: 
   - key: "sn_sys_class_name | lower"
     prefix: ""
