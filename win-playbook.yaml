@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: windows_2016
   tasks:
     - name: Ensure IIS is enabled
       win_feature:
