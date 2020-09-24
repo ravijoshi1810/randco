@@ -24,7 +24,7 @@
         mode: '0644'    
     - copy:
       src: /tmp/report.html
-      dest: /tmp/reports-randco.html
+      dest: /tmp/reports-randco/report.html
       owner: root
       group: root
       mode: 0644
