@@ -21,9 +21,7 @@
       template:
         src: html-report.j2
         dest: /tmp/report.html
-        mode: '0644'
-    - name: Send report via email
-    
+        mode: '0644'    
     - copy:
       src: /tmp/report.html
       dest: /tmp/reports-randco
