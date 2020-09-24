@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  vars:
+    job_id: "{{ lookup('env', 'JOB_ID') }}"
+  tasks:
+    - name: Get the previous job in the current workflow
+      tower_previous_workflow_job:
+        tower_base_url: "{{ tower_base_url }}"
+        tower_username: "{{ tower_username }}"
+        tower_password: "{{ tower_password }}"
+        tower_job_id: "{{ job_id }}"
+      register: previous_job
+    - name: Beautify output
+      beautify_ansible_job_output:
+        tower_base_url: "{{ tower_base_url }}"
+        tower_username: "{{ tower_username }}"
+        tower_password: "{{ tower_password }}"
+        tower_job_id: "{{ previous_job.job_id }}"
+      register: job
+    - name: Prepare the report
+      template:
+        src: html-report.j2
+        dest: /tmp/report.html
+        mode: '0644'
+    - name: Send report via email
+    
+    - copy:
+      src: /tmp/report.html
+      dest: /tmp/reports-randco
+      owner: foo
+      group: foo
+      mode: 0644
