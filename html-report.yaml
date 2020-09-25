@@ -22,5 +22,6 @@
         src: html-report.j2
         dest: /tmp/report.html
         mode: '0644'
+        delegate_to: localhost
 
 
