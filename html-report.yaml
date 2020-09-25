@@ -22,8 +22,5 @@
         src: html-report.j2
         dest: /tmp/report.html
         mode: '0644'    
-    - name: Copy file from tmp
-      copy:
-        src: /tmp/report.html
-        dest: /var/lib/awx/randco-reports
+
 
