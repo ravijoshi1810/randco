@@ -22,12 +22,13 @@
         src: html-report.j2
         dest: /tmp/report.html
         mode: '0644'
+      delegate_to: localhost
         
         
     - name: Copy HTML file
       copy:
        src: /tmp/report.html
-       dest: /etc/report.html
+       dest: /tmp/reports-randco/report.html
       delegate_to: localhost
    
 
