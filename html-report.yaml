@@ -28,7 +28,7 @@
     - name: Copy HTML file
       copy:
        src: /tmp/report.html
-       dest: /tmp/reports-randco/report.html
+       dest: /var/lib/awx/randco-reports
       delegate_to: localhost
    
 
