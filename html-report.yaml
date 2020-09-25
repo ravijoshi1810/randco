@@ -28,7 +28,7 @@
       copy:
        src: /tmp/report.html
        dest: /etc/report.html
-       delegate_to: localhost
+      delegate_to: localhost
    
 
 
