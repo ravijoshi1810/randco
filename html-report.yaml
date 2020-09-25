@@ -20,7 +20,7 @@
     - name: Prepare the report
       template:
         src: html-report.j2
-        dest: /var/lib/awx/randco-reports/report.html
+        dest: /var/lib/awx/randco-reports
         mode: '0644'    
 
 
