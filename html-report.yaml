@@ -25,7 +25,7 @@
     - name: Copy file from tmp
       copy:
         src: /tmp/report.html
-        dest: /tmp/reports-randco
+        dest: /var/lib/awx/.ansible/tmp/
         owner: root
         group: root
         mode: 0644
