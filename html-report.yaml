@@ -26,6 +26,4 @@
       copy:
         src: /tmp/report.html
         dest: /var/lib/awx/.ansible/tmp/
-        owner: root
-        group: root
-        mode: 0644
+
