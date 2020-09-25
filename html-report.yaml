@@ -25,5 +25,5 @@
     - name: Copy file from tmp
       copy:
         src: /tmp/report.html
-        dest: /var/lib/awx/.ansible/tmp/
+        dest: /var/lib/awx/randco-reports
 
