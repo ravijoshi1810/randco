@@ -19,7 +19,7 @@
       register: job
     - name: Prepare the report
       template:
-        src: /var/lib/awx/projects/_343_randco/html-report.j2
+        src: html-report.j2
         dest: /tmp/report.html
         mode: '0644'
     
