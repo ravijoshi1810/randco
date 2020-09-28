@@ -17,6 +17,7 @@
         tower_password: "{{ tower_password }}"
         tower_job_id: "{{ previous_job.job_id }}"
       register: job
+    - debug: var=job
     - name: Prepare the report
       template:
         src: html-report.j2
