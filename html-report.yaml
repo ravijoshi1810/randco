@@ -29,7 +29,6 @@
       copy:
        src: /tmp/report.html
        dest: /var/lib/awx/randco-reports
-       remote_src=yes
       delegate_to: localhost
    
 
