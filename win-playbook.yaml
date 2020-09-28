@@ -11,22 +11,19 @@
         name: Default Web Site
         port: 80
         state: absent
-     
-      when: iis_https_exception is false
+      when: sn_u_iis_https_exception is false
     - name: Ensure that there is the binding on HTTPS port
       win_iis_webbinding:
         name: Default Web Site
         protocol: https
         port: 443
         certificate_hash: B0D0FA8408FC67B230338FCA584D03792DA73F4C
- 
       when: iis_https_exception is false
     - name: Ensure that there is the binding on HTTP port
       win_iis_webbinding:
         name: Default Web Site
         port: 80
- 
-      when: iis_https_exception is true
+      when: sn_u_iis_https_exception is true
     - name: Ensure that there is no binding on HTTPS port
       win_iis_webbinding:
         name: Default Web Site
@@ -34,5 +31,4 @@
         port: 443
         certificate_hash: B0D0FA8408FC67B230338FCA584D03792DA73F4C
         state: absent
-
-      when: iis_https_exception is true
+      when: sn_u_iis_https_exception is true
