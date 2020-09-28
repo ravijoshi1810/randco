@@ -11,7 +11,7 @@
         name: Default Web Site
         port: 80
         state: absent
-      when: sn_u_iis_https_exception is false
+      when: sn_u_iis_https_exception == 'false'
     - name: Ensure that there is the binding on HTTPS port
       win_iis_webbinding:
         name: Default Web Site
