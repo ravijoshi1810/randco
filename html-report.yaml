@@ -19,11 +19,10 @@
       register: job
     - name: Prepare the report
       template:
-        src: html-report.j2
+        src: /var/lib/awx/projects/_343_randco/html-report.j2
         dest: /tmp/report.html
         mode: '0644'
-        remote_src=yes
-      delegate_to: localhost
+    
         
         
     - name: Copy HTML file
