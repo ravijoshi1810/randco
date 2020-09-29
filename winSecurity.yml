@@ -33,10 +33,6 @@
         }
       register: IPV6_output
 
-    - name: Disable IPV6 on server
-      win_shell: "Get-NetAdapterBinding -ComponentID ms_tcpip6"
-      when: IPV6_output.stdout_lines == "True"
-
     - name: "Rename Network adapter"
       win_shell: Rename-NetAdapter -Name "Ethernet0" -NewName "Production"
       register: NicName_output
