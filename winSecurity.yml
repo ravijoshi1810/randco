@@ -1,0 +1,64 @@
+---
+- name: "Disable Firewall settings on Windows"
+
+  hosts: all
+  tasks:
+    - name: "check the current firewall settings"
+      win_shell: netsh advfirewall show all state
+      register: firewall_status
+
+    - name: "Disable firewall"
+      win_firewall:
+        profile:
+          - domain
+          - Public
+          - Private
+        state: disabled
+
+        tags: firewall
+
+- name: "Disable TCP/IP 6"
+  hosts: all
+  tasks:
+    - name: "check the current IPV6 status"
+      win_shell: |
+        $nicadapter = Get-NetAdapter 
+        foreach ($nic in $nicadapter.Name)
+        {
+        try{ 
+         $ipv6Status = Get-NetAdapterBinding -Name $nic -ComponentID ms_tcpip6
+         $ipv6Status.enabled         
+        }
+        catch{ }
+        }
+      register: IPV6_output
+
+    - name: Disable IPV6 on server
+      win_shell: "Get-NetAdapterBinding -ComponentID ms_tcpip6"
+      when: IPV6_output.stdout_lines == "True"
+
+    - name: "Rename Network adapter"
+      win_shell: Rename-NetAdapter -Name "Ethernet0" -NewName "Production"
+      register: NicName_output
+
+    - name: "Add Group/User to local administrator"
+      win_group_membership:
+        name: Administrators
+        members:
+          - testadmin
+
+        state: present
+
+    # "cREATE page fie windows"
+
+    - name: Query current pagefiles configuration
+      win_pagefile:
+
+    - name: Set C drive pagefile
+      win_pagefile:
+        drive: C
+        initial_size: 512
+        maximum_size: 1024
+        override: no
+        state: present
+      tags: pagefile
