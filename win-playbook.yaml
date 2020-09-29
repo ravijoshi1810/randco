@@ -17,7 +17,7 @@
         name: Default Web Site
         protocol: https
         port: 443
-        certificate_hash: B0D0FA8408FC67B230338FCA584D03792DA73F4C
+        certificate_hash: ''
       when: sn_u_iis_https_exception == 'false'
     - name: Ensure that there is the binding on HTTP port
       win_iis_webbinding:
@@ -29,6 +29,6 @@
         name: Default Web Site
         protocol: https
         port: 443
-        certificate_hash: B0D0FA8408FC67B230338FCA584D03792DA73F4C
+        certificate_hash: ''
         state: absent
       when: sn_u_iis_https_exception == 'true'
